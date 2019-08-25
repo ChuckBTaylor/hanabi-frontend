@@ -5,5 +5,5 @@ import { Component } from '@angular/core';
     templateUrl: './my-card.component.html'
 })
 export class MyCardComponent{
-
+    orientation: string = "UP";
 }
