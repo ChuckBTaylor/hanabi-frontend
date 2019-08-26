@@ -6,3 +6,11 @@ export const enum Color {
     GREEN = "GREEN",
     RAINBOW = "RAINBOW"
 }
+
+export const enum Number {
+    ONE = 1,
+    TWO = 2,
+    THREE = 3,
+    FOUR = 4,
+    FIVE = 5
+}
