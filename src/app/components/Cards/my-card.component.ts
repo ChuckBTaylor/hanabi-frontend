@@ -1,9 +1,15 @@
 import { Component } from '@angular/core';
-import { MyCard } from 'src/app/models/my-card.model';
+import { CardOrientation, IMyCard } from 'src/app/models/Card/my-card.model';
+import { CardNumber, CardColor } from 'src/app/models/Card/card.model';
 
 @Component({
     selector: 'my-card',
     templateUrl: './my-card.component.html'
 })
-export class MyCardComponent extends MyCard{
+export class MyCardComponent implements IMyCard {
+
+    cardNumber: CardNumber;
+    cardColor: CardColor
+    cardOrientation: CardOrientation;
+
 }

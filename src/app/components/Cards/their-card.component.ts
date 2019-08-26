@@ -1,10 +1,14 @@
 import { Component } from '@angular/core';
-import { ThierCard } from 'src/app/models/their-card.model';
+import { ITheirCard } from 'src/app/models/Card/their-card.model';
+import { CardNumber, CardColor } from 'src/app/models/Card/card.model';
 
 @Component({
     selector: 'their-card',
     templateUrl: './their-card.component.html'
 })
-export class TheirCardComponent extends ThierCard {
-    
+export class TheirCardComponent implements ITheirCard {
+
+    cardNumber: CardNumber;
+    cardColor: CardColor;
+
 }
