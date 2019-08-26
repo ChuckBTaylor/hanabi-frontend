@@ -15,7 +15,7 @@ export const enum Number {
     FIVE = 5
 }
 
-export interface Card {
+export class Card {
     color: Color;
     number: Number;
 }
