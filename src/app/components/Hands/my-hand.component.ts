@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { MyCardComponent } from '../Cards/my-card.component';
+import { Orientation } from 'src/app/models/my-card.model';
+import { CardColor, CardNumber } from 'src/app/models/Card.model';
 
 @Component({
     selector: 'my-hand',
@@ -10,10 +12,14 @@ export class MyHandComponent {
     showHand: boolean = true;
     myCards: MyCardComponent[] = [
         {
-            orientation: "UP"
+            orientation: Orientation.DOWN,
+            color: CardColor.RED,
+            number: CardNumber.THREE
         },
         {
-            orientation: "DOWN"
+            orientation: Orientation.UP,
+            color: CardColor.BLUE,
+            number: CardNumber.FIVE
         }
     ];
 

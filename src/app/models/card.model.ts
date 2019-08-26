@@ -1,4 +1,4 @@
-export const enum Color {
+export const enum CardColor {
     RED = "RED",
     YELLOW = "YELLOW",
     BLUE = "BLUE",
@@ -7,7 +7,7 @@ export const enum Color {
     RAINBOW = "RAINBOW"
 }
 
-export const enum Number {
+export const enum CardNumber {
     ONE = 1,
     TWO = 2,
     THREE = 3,
@@ -16,6 +16,6 @@ export const enum Number {
 }
 
 export class Card {
-    color: Color;
-    number: Number;
+    color: CardColor;
+    number: CardNumber;
 }
