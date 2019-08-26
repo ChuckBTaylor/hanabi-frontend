@@ -14,3 +14,8 @@ export const enum Number {
     FOUR = 4,
     FIVE = 5
 }
+
+export interface Card {
+    color: Color;
+    number: Number;
+}
