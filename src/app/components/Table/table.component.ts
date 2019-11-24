@@ -19,18 +19,29 @@ export class TableComponent implements OnInit {
 
   playArea: PlayAreaComponent;
   discardedCards: ICard[] = [];
-  gameInfo: GameInfoComponent;
+  cluesRemaining: number;
+  strikesRemaining: number;
   myHand: ICard[];
   theirHands: ITheirHand[];
   deck: ICard[];
 
   ngOnInit(): void {
+    this.cluesRemaining = 8;
+    this.strikesRemaining = 3;
     this.deck = this.generateNewDeck(false);
     this.myHand = this.initializeHand(5);
     this.theirHands = [
       {
         theirCards: this.initializeHand(5),
         theirName: "Vika"
+      },
+      {
+        theirCards: this.initializeHand(5),
+        theirName: "Kenny"
+      },
+      {
+        theirCards: this.initializeHand(5),
+        theirName: "Squeak"
       }
     ]
   }
@@ -73,6 +84,4 @@ export class TableComponent implements OnInit {
     }
     return myNewHand;
   }
-
-
 }
