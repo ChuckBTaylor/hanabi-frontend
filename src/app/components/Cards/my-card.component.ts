@@ -8,7 +8,7 @@ import { CardNumber, CardColor } from 'src/app/models/Card/card.model';
 })
 export class MyCardComponent implements IMyCard {
 
-    cardNumber: CardNumber;
-    cardColor: CardColor
+    @Input() cardNumber: CardNumber;
+    @Input() cardColor: CardColor
     @Input() cardOrientation: CardOrientation;
 }

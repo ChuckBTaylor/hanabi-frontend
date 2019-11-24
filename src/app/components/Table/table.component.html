@@ -1,0 +1,12 @@
+<div class="hanabi-table">
+  <div class="their-hand-holder" *ngFor="let hand of theirHands">
+    <their-hand [theirName]="hand.theirName" [theirCards]="hand.theirCards">
+    </their-hand>
+  </div>
+  <div class='garbage-area-holder'>
+    <garbage-area [discardedCards]='garbageArea'></garbage-area>
+  </div>
+  <div class='my-hand-holder'>
+    <my-hand [myCards]='myHand'></my-hand>
+  </div>
+</div>

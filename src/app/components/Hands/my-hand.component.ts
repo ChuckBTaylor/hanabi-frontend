@@ -1,42 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MyCardComponent } from '../Cards/my-card.component';
 import { CardNumber, CardColor } from 'src/app/models/Card/card.model';
-import { CardOrientation } from 'src/app/models/Card/my-card.model';
+import { CardOrientation, IMyCard } from 'src/app/models/Card/my-card.model';
 
 @Component({
     selector: 'my-hand',
     templateUrl: './my-hand.component.html'
 })
-export class MyHandComponent {
+export class MyHandComponent implements OnInit {
     myName: string = "player name";
     showHand: boolean = true;
-    myCards: MyCardComponent[] = [
-        {
-            cardColor: CardColor.RED,
-            cardNumber: CardNumber.FOUR,
-            cardOrientation: CardOrientation.UP
-        },
-        {
-            cardColor: CardColor.BLUE,
-            cardNumber: CardNumber.ONE,
-            cardOrientation: CardOrientation.UP
-        },
-        {
-            cardColor: CardColor.YELLOW,
-            cardNumber: CardNumber.ONE,
-            cardOrientation: CardOrientation.UP
-        },
-        {
-            cardColor: CardColor.YELLOW,
-            cardNumber: CardNumber.ONE,
-            cardOrientation: CardOrientation.UP
-        },
-        {
-            cardColor: CardColor.GREEN,
-            cardNumber: CardNumber.ONE,
-            cardOrientation: CardOrientation.UP
-        }
-    ];
+    @Input() myCards: IMyCard[] = [];
+
+    ngOnInit(): void {
+        this.myCards.map(card => card.cardOrientation = CardOrientation.UP);
+    }
 
     toggleHand(): void {
         this.showHand = !this.showHand;

@@ -1,3 +1,3 @@
-<div class='their-card' [style.color]='cardColor' [title]='cardColor + cardNumber'>
+<div class='their-card' [style.color]='getDisplayColor(cardColor)' [title]='cardColor + " " + cardNumber'>
     {{cardColor}} {{cardNumber}}
 </div>

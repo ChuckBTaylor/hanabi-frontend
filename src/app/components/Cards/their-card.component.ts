@@ -11,4 +11,8 @@ export class TheirCardComponent implements ITheirCard {
     @Input() cardNumber: CardNumber;
     @Input() cardColor: CardColor;
 
+    getDisplayColor(color: string): string {        
+        return color === CardColor.WHITE ? "BLACK" : color;
+    }
+
 }
