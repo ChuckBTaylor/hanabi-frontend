@@ -18,7 +18,7 @@ export class PlayAreaComponent implements IPlayArea {
 
     playCard(card: ICard): boolean {
         let stack: ICard[] = this.getProperStack(card.cardColor);
-
+        //TODO left off here!
         return true;
     }
 
