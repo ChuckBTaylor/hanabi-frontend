@@ -15,10 +15,20 @@ export class MyHandComponent {
             cardColor: CardColor.RED,
             cardNumber: CardNumber.FOUR,
             cardOrientation: CardOrientation.UP
-        }       
+        },
+        {
+            cardColor: CardColor.BLUE,
+            cardNumber: CardNumber.ONE,
+            cardOrientation: CardOrientation.UP
+        }   
     ];
 
     toggleHand(): void {
         this.showHand = !this.showHand;
+    };
+
+    flipCard(i: number): void {
+        let card: MyCardComponent = this.myCards[i];
+        card.cardOrientation = card.cardOrientation == CardOrientation.UP ? CardOrientation.DOWN : CardOrientation.UP;
     }
 }

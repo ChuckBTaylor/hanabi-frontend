@@ -1,0 +1,21 @@
+<div class='their-hand'>
+    <div class='their-hand-header'>
+        {{theirName}}'s hand
+    </div>
+    <div class=their-hand-body>
+        <table class='their-hand-table' *ngIf='theirCards && theirCards.length'>
+            <thead>
+                <tr>
+                    <th *ngFor="let card of theirCards; let i = index" [attr.data-index]="i">{{'Card ' + (i + 1)}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td *ngFor="let card of theirCards">
+                        <their-card [cardColor]='card.cardColor' [cardNumber]='card.cardNumber'></their-card>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

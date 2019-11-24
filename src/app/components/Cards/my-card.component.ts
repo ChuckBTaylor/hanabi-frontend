@@ -11,5 +11,4 @@ export class MyCardComponent implements IMyCard {
     cardNumber: CardNumber;
     cardColor: CardColor
     cardOrientation: CardOrientation;
-
 }

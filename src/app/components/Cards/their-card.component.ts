@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ITheirCard } from 'src/app/models/Card/their-card.model';
 import { CardNumber, CardColor } from 'src/app/models/Card/card.model';
 
@@ -8,7 +8,7 @@ import { CardNumber, CardColor } from 'src/app/models/Card/card.model';
 })
 export class TheirCardComponent implements ITheirCard {
 
-    cardNumber: CardNumber;
-    cardColor: CardColor;
+    @Input() cardNumber: CardNumber;
+    @Input() cardColor: CardColor;
 
 }

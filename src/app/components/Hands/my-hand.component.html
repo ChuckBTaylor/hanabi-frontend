@@ -1,26 +1,26 @@
-<div>
+<div class='my-hand'> 
     <div class='my-hand-header'>
         {{myName}}'s Hand
     </div>
     <div class='my-hand-body'>
-    <button (click)='toggleHand()'>{{showHand ? "Hide Hand" : "Show Hand"}}</button>
+    <button (click)='toggleHand()'>{{showHand ? "Hide My Hand" : "Show My Hand"}}</button>
        <table class='my-hand-table' *ngIf='showHand && myCards && myCards.length'>
            <thead>
                <tr>
-                   <th *ngFor="let card of myCards; let i = index" [attr.data-index]="i">{{'Card ' + i}}</th>
+                   <th *ngFor="let card of myCards; let i = index" [attr.data-index]="i">{{'Card ' + (1 + i)}}</th>
                </tr>
            </thead>
            <tbody>
                 <tr>
                     <td *ngFor="let card of myCards">
-                        {{card.orientation}}
+                        {{card.cardOrientation}}
                     </td>
                 </tr>
            </tbody>
            <tfoot>
                <tr>
-                   <td *ngFor="let card of myCards">
-                       <button (click)='flipCard()'>
+                   <td *ngFor="let card of myCards; let i = index" [attr.data-index]="i">
+                       <button (click)='flipCard(i)'>
                            Flip card
                        </button>
                    </td>
