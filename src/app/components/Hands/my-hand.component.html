@@ -13,7 +13,7 @@
            <tbody>
                 <tr>
                     <td *ngFor="let card of myCards">
-                        {{card.cardOrientation}}
+                        <my-card [cardOrientation]='card.cardOrientation'></my-card>
                     </td>
                 </tr>
            </tbody>

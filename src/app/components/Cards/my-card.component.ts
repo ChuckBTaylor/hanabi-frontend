@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CardOrientation, IMyCard } from 'src/app/models/Card/my-card.model';
 import { CardNumber, CardColor } from 'src/app/models/Card/card.model';
 
@@ -10,5 +10,5 @@ export class MyCardComponent implements IMyCard {
 
     cardNumber: CardNumber;
     cardColor: CardColor
-    cardOrientation: CardOrientation;
+    @Input() cardOrientation: CardOrientation;
 }
