@@ -5,12 +5,8 @@ import { ICard } from 'src/app/models/Card/card.model';
     selector: 'garbage-area',
     templateUrl: "./garbage-area.component.html"
 })
-export class GarbageAreaComponent implements OnInit, OnChanges {
+export class GarbageAreaComponent implements OnChanges {
     @Input() discardedCards: ICard[] = [];
-
-    ngOnInit(): void {
-        console.log("hi! from garbage on init")
-    }
 
     ngOnChanges(): void {
         console.log("From onchanges: " + this.discardedCards);

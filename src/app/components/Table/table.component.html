@@ -3,8 +3,9 @@
     <their-hand [theirName]="hand.theirName" [theirCards]="hand.theirCards">
     </their-hand>
   </div>
-  <div class='garbage-area-holder'>
-    <garbage-area [discardedCards]='garbageArea'></garbage-area>
+  <div class='garbage-area-holder' *ngIf='hasDiscardedCards()' >
+    Discarded Cards:
+    <garbage-area [discardedCards]='discardedCards'></garbage-area>
   </div>
   <div class='my-hand-holder'>
     <my-hand [myCards]='myHand'></my-hand>
