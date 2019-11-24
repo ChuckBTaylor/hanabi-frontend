@@ -30,6 +30,11 @@ export class MyHandComponent {
             cardColor: CardColor.YELLOW,
             cardNumber: CardNumber.ONE,
             cardOrientation: CardOrientation.UP
+        },
+        {
+            cardColor: CardColor.GREEN,
+            cardNumber: CardNumber.ONE,
+            cardOrientation: CardOrientation.UP
         }
     ];
 

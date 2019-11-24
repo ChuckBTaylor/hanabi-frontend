@@ -21,6 +21,14 @@ export class TheirHandComponent {
        {
            cardColor: CardColor.RED,
            cardNumber: CardNumber.THREE
+       },
+       {
+           cardColor: CardColor.YELLOW,
+           cardNumber: CardNumber.THREE
+       },
+       {
+           cardColor: CardColor.BLUE,
+           cardNumber: CardNumber.ONE
        }
     ];
 
