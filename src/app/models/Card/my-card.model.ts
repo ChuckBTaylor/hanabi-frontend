@@ -2,7 +2,9 @@ import { ICard } from './card.model';
 
 export enum CardOrientation {
     UP = "UP",
-    DOWN = "DOWN"
+    DOWN = "DOWN",
+    LEFT = "LEFT",
+    RIGHT = "RIGHT"
 }
 
 export interface IMyCard extends ICard {

@@ -20,8 +20,8 @@
            <tfoot>
                <tr>
                    <td *ngFor="let card of myCards; let i = index" [attr.data-index]="i">
-                       <button (click)='flipCard(i)'>
-                           Flip card
+                       <button (click)='rotateCard(i)'>
+                           Rotate card
                        </button>
                        <br/>
                        <button (click)='moveCard(i)'>

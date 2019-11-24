@@ -25,6 +25,11 @@ export class MyHandComponent {
             cardColor: CardColor.YELLOW,
             cardNumber: CardNumber.ONE,
             cardOrientation: CardOrientation.UP
+        },
+        {
+            cardColor: CardColor.YELLOW,
+            cardNumber: CardNumber.ONE,
+            cardOrientation: CardOrientation.UP
         }
     ];
 
@@ -32,18 +37,31 @@ export class MyHandComponent {
         this.showHand = !this.showHand;
     };
 
-    flipCard(i: number): void {
+    rotateCard(i: number): void {
         let card: MyCardComponent = this.myCards[i];
-        card.cardOrientation = card.cardOrientation == CardOrientation.UP ? CardOrientation.DOWN : CardOrientation.UP;
+        switch (card.cardOrientation) {
+            case CardOrientation.UP:
+                card.cardOrientation = CardOrientation.RIGHT;
+                break;
+            case CardOrientation.RIGHT:
+                card.cardOrientation = CardOrientation.DOWN;
+                break;
+            case CardOrientation.DOWN:
+                card.cardOrientation = CardOrientation.LEFT;
+                break;
+            case CardOrientation.LEFT:
+                card.cardOrientation = CardOrientation.UP;
+                break;
+        }
     };
 
     moveCard(i: number): void {
         let newPosition: string = prompt("Move card to which position? (1-" + this.myCards.length + ")");
-        if(newPosition === null)
+        if (newPosition === null)
             return;
         let newPositionNumber: number;
         newPositionNumber = Number.parseInt(newPosition);
-        if(!newPositionNumber || newPositionNumber < 1 || newPositionNumber > this.myCards.length){
+        if (!newPositionNumber || newPositionNumber < 1 || newPositionNumber > this.myCards.length) {
             alert("'" + newPosition + "' is an invalid position!");
             return;
         }
