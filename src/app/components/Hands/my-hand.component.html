@@ -40,14 +40,14 @@
         </tr>
         <tr *ngIf="myTurn">
           <td *ngFor="let card of myCards; let i = index" [attr.data-index]="i">
-            <button (click)="playCardClick(card)">
+            <button (click)="playCardClick(card, i)">
               Play Card
             </button>
           </td>
         </tr>
         <tr *ngIf="myTurn">
           <td *ngFor="let card of myCards; let i = index" [attr.data-index]="i">
-            <button (click)="discardCardClick(card)">
+            <button (click)="discardCardClick(card, i)">
               Discard Card
             </button>
           </td>

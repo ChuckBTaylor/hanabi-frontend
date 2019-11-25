@@ -2,6 +2,7 @@ import { Component, Input, OnInit, OnChanges, Output, EventEmitter } from '@angu
 import { MyCardComponent } from '../Cards/my-card.component';
 import { CardNumber, CardColor, ICard } from 'src/app/models/Card/card.model';
 import { CardOrientation, IMyCard } from 'src/app/models/Card/my-card.model';
+import { ICardAction } from 'src/app/models/Action/CardAction.model';
 
 @Component({
     selector: 'my-hand',
@@ -12,16 +13,16 @@ export class MyHandComponent implements OnInit, OnChanges {
     showHand: boolean = true;
     @Input() myCards: IMyCard[] = [];
     myTurn: boolean = true;
-    @Output() playCard: EventEmitter<ICard> = new EventEmitter<ICard>();
-    @Output() discardCard: EventEmitter<ICard> = new EventEmitter<ICard>();
+    @Output() playCard: EventEmitter<ICardAction> = new EventEmitter<ICardAction>();
+    @Output() discardCard: EventEmitter<ICardAction> = new EventEmitter<ICardAction>();
 
     ngOnInit(): void {
-        this.turnAllCardsUp();
+        this.turnUnlabeledCardsUp();
         console.log(this.myCards);
     };
 
     ngOnChanges(): void {
-        this.turnAllCardsUp();
+        this.turnUnlabeledCardsUp();
         console.log(this.myCards);
     };
 
@@ -29,13 +30,24 @@ export class MyHandComponent implements OnInit, OnChanges {
         this.showHand = !this.showHand;
     };
 
-    playCardClick(card: ICard): void {
-        this.playCard.emit(card);
+    playCardClick(card: ICard, index: number): void {
+        let action: ICardAction = {
+            card: card,
+            index: index
+        };
+        this.playCard.emit(action);
+        this.turnUnlabeledCardsUp();
     };
 
-    discardCardClick(card: ICard) {
-        this.discardCard.emit(card);
+    discardCardClick(card: ICard, index: number): void {
+        let action: ICardAction = {
+            card: card,
+            index: index
+        };
+        this.discardCard.emit(action);
+        this.turnUnlabeledCardsUp();
     };
+
 
     rotateCard(i: number): void {
         let card: MyCardComponent = this.myCards[i];
@@ -70,8 +82,8 @@ export class MyHandComponent implements OnInit, OnChanges {
         this.myCards.splice(newPositionNumber, 0, this.myCards.splice(i, 1)[0]);
     };
 
-    turnAllCardsUp(): void {
-        this.myCards.map(card => card.cardOrientation = CardOrientation.UP);
+    turnUnlabeledCardsUp(): void {
+        this.myCards.filter(card => !card.cardOrientation).map(card => card.cardOrientation = CardOrientation.UP);
     }
 
 }

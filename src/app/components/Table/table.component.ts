@@ -4,6 +4,8 @@ import { ICard } from "src/app/models/Card/card.model";
 import { CardColor, CardNumber } from "../../models/Card/card.model";
 import { ITheirHand } from 'src/app/models/Hand/their-hand.model';
 import { isGeneratedFile } from '@angular/compiler/src/aot/util';
+import { IcuPlaceholder } from '@angular/compiler/src/i18n/i18n_ast';
+import { ICardAction } from 'src/app/models/Action/CardAction.model';
 
 @Component({
   selector: "hanabi-table",
@@ -42,26 +44,32 @@ export class TableComponent implements OnInit {
         theirName: "Squeak"
       }
     ]
-  }
+  };
 
-  reset(){
+  reset() {
     this.ngOnInit();
     this.playArea.resetStacks();
-  }
+  };
 
-  onPlayCard(card: ICard): void {
-    console.log(card);
-    if (!this.playArea.playCard(card)) {
+  onPlayCard(action: ICardAction): void {
+    console.log(action.card);
+    if (!this.playArea.playCard(action.card)) {
       this.loseStrike();
     }
-    this.playedCards.push(card);
-  }
+    this.playedCards.push(action.card);
+    this.myHand.splice(action.index, 1);
+    if (!!this.deck.length)
+      this.myHand.push(this.drawFromDeck());
+  };
 
-  onDiscardCard(card: ICard): void {
+  onDiscardCard(action: ICardAction): void {
     if (this.cluesRemaining < 8)
       this.cluesRemaining += 1;
-    this.discardedCards.push(card);
-  }
+    this.discardedCards.push(action.card);
+    this.myHand.splice(action.index, 1);
+    if (!!this.deck.length)
+      this.myHand.push(this.drawFromDeck());
+  };
 
   hasDiscardedCards(): boolean {
     return (!!this.discardedCards.length);
@@ -73,7 +81,7 @@ export class TableComponent implements OnInit {
       alert("You've lost! New game!")
       this.reset();
     }
-  }
+  };
 
 
   //Methods that will be deleted later. Writing for functionality testing
@@ -98,15 +106,22 @@ export class TableComponent implements OnInit {
           return cards;
         })
     });
-  }
+  };
 
   initializeHand(size: number): ICard[] {
     let myNewHand: ICard[] = [];
     for (let i = 0; i < size; i++) {
-      let index = Math.floor(Math.random() * this.deck.length);
-      let removedCard: ICard = this.deck.splice(index, 1)[0];
-      myNewHand.push(removedCard);
+      let card = this.drawFromDeck();
+      myNewHand.push(card);
     }
     return myNewHand;
-  }
+  };
+
+  drawFromDeck(): ICard {
+    let index = Math.floor(Math.random() * this.deck.length);
+    let removedCard: ICard = this.deck.splice(index, 1)[0];
+    return removedCard;
+  };
+
+
 }
