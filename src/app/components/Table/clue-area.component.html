@@ -1,0 +1,62 @@
+<div class="clue-area">
+  <button (click)="toggleGivingClue()">
+    {{ givingClue ? "Cancel" : "Give Clue" }}
+  </button>
+  <div *ngIf="givingClue">
+    <table>
+      <thead>
+        <tr>
+          <th>Tell</th>
+          <th></th>
+          <th>Color</th>
+          <th>Number</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let hand of theirHands">
+          <td>
+            {{ hand.theirName }}
+          </td>
+          <td>
+            about
+          </td>
+          <td>
+            <button
+              *ngFor="let color of getEligibleColors(hand)"
+              (click)="confirmClue({ name: hand.theirName, color: color })"
+            >
+              {{ color }}
+            </button>
+          </td>
+          <td>
+            <button
+              *ngFor="let number of getEligibleNumbers(hand)"
+              (click)="confirmClue({ name: hand.theirName, number: number })"
+            >
+              {{ number }}
+            </button>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot *ngIf="confirmingClue">
+        <tr>
+          <td colspan="4">
+            Tell {{ pendingClue.name }} about {{ !!pendingClue.color ? pendingClue.color : pendingClue.number }}s?
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <button (click)='acceptClue()'>
+              Yes
+            </button>
+          </td>
+          <td colspan="2">
+            <button (click)="rejectClue()">
+              No
+            </button>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>

@@ -6,6 +6,7 @@ import { ITheirHand } from 'src/app/models/Hand/their-hand.model';
 import { isGeneratedFile } from '@angular/compiler/src/aot/util';
 import { IcuPlaceholder } from '@angular/compiler/src/i18n/i18n_ast';
 import { ICardAction } from 'src/app/models/Action/CardAction.model';
+import { IGivenClue } from 'src/app/models/Action/IGivenClue.model';
 
 @Component({
   selector: "hanabi-table",
@@ -121,6 +122,11 @@ export class TableComponent implements OnInit {
     let index = Math.floor(Math.random() * this.deck.length);
     let removedCard: ICard = this.deck.splice(index, 1)[0];
     return removedCard;
+  };
+
+  onSendClue(clue: IGivenClue): void {
+    console.log(clue);
+    this.cluesRemaining -=1;
   };
 
 

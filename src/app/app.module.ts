@@ -11,6 +11,7 @@ import { TableComponent } from './components/Table/table.component';
 import { PlayAreaComponent } from './components/Table/play-area.component';
 import { GarbageAreaComponent } from './components/Table/garbage-area.component';
 import { GameInfoComponent } from './components/Table/game-info.component';
+import { ClueAreaComponent } from './components/Table/clue-area.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { GameInfoComponent } from './components/Table/game-info.component';
     TableComponent,
     PlayAreaComponent,
     GarbageAreaComponent,
-    GameInfoComponent
+    GameInfoComponent,
+    ClueAreaComponent
   ],
   imports: [
     BrowserModule,

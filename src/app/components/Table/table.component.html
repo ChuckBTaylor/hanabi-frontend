@@ -23,6 +23,10 @@
     >
     </game-info>
   </div>
+  <div class="clue-area-holder" *ngIf="cluesRemaining > 0">
+    <clue-area [theirHands]="theirHands" (sendClue)="onSendClue($event)">
+    </clue-area>
+  </div>
   <div class="garbage-area-holder" *ngIf="hasDiscardedCards()">
     Discarded Cards:
     <garbage-area [discardedCards]="discardedCards"></garbage-area>
