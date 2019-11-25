@@ -4,14 +4,17 @@
     </their-hand>
   </div>
   <div class="play-area-holder">
-    <play-area [showRainbowStack]="playingWithRainbow"></play-area>
+    <play-area
+      [showRainbowStack]="playingWithRainbow"
+      [playedCards]="playedCards"
+    ></play-area>
   </div>
   <div class="my-hand-holder">
-    <my-hand [myCards]="myHand" (playCard)="onPlayCard($event)" (discardCard)="onDiscardCard($event)"></my-hand>
-  </div>
-  <div class="garbage-area-holder" *ngIf="hasDiscardedCards()">
-    Discarded Cards:
-    <garbage-area [discardedCards]="discardedCards"></garbage-area>
+    <my-hand
+      [myCards]="myHand"
+      (playCard)="onPlayCard($event)"
+      (discardCard)="onDiscardCard($event)"
+    ></my-hand>
   </div>
   <div class="game-info-holder">
     <game-info
@@ -20,4 +23,8 @@
     >
     </game-info>
   </div>
+  <div class="garbage-area-holder" *ngIf="hasDiscardedCards()">
+      Discarded Cards:
+      <garbage-area [discardedCards]="discardedCards"></garbage-area>
+    </div>
 </div>

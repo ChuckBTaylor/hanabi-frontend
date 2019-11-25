@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, OnChanges } from "@angular/core";
 import { IPlayArea } from 'src/app/models/Table/play-area.model';
 import { ICard, CardColor, CardNumber } from 'src/app/models/Card/card.model';
 import { IcuPlaceholder } from '@angular/compiler/src/i18n/i18n_ast';
@@ -7,7 +7,7 @@ import { IcuPlaceholder } from '@angular/compiler/src/i18n/i18n_ast';
     selector: 'play-area',
     templateUrl: "./play-area.component.html"
 })
-export class PlayAreaComponent implements IPlayArea {
+export class PlayAreaComponent implements IPlayArea, OnChanges {
 
     redStack: ICard[] = [{
         cardNumber: CardNumber.ONE,
@@ -19,6 +19,11 @@ export class PlayAreaComponent implements IPlayArea {
     greenStack: ICard[] = [];
     rainbowStack: ICard[] = [];
     @Input() showRainbowStack: boolean;
+    @Input() playedCards: ICard[] = [];
+    
+    ngOnChanges(): void {
+
+    }
 
     playCard(card: ICard): boolean {
         let stack: ICard[] = this.getProperStack(card.cardColor);
@@ -43,5 +48,14 @@ export class PlayAreaComponent implements IPlayArea {
             case CardColor.RAINBOW:
                 return this.rainbowStack;
         }
+    }
+
+    resetStacks(): void {
+        this.blueStack = [];
+        this.redStack = [];
+        this.whiteStack = [];
+        this.yellowStack = [];
+        this.greenStack = [];
+        this.rainbowStack = [];
     }
 }

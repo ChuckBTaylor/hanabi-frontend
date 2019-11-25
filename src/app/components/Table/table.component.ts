@@ -12,17 +12,20 @@ import { isGeneratedFile } from '@angular/compiler/src/aot/util';
 export class TableComponent implements OnInit {
 
   @ViewChild(PlayAreaComponent, { static: false }) playArea: PlayAreaComponent;
+  playedCards: ICard[] = [];
   discardedCards: ICard[] = [];
   cluesRemaining: number;
   strikesRemaining: number;
   myHand: ICard[] = [];
   theirHands: ITheirHand[] = [];
   deck: ICard[] = [];
-  playingWithRainbow: boolean = false;
+  playingWithRainbow: boolean = true;
 
   ngOnInit(): void {
     this.cluesRemaining = 6;
     this.strikesRemaining = 3;
+    this.discardedCards = [];
+    this.playedCards = [];
     this.deck = this.generateNewDeck(this.playingWithRainbow);
     this.myHand = this.initializeHand(5);
     this.theirHands = [
@@ -41,16 +44,23 @@ export class TableComponent implements OnInit {
     ]
   }
 
+  reset(){
+    this.ngOnInit();
+    this.playArea.resetStacks();
+  }
+
   onPlayCard(card: ICard): void {
     console.log(card);
     if (!this.playArea.playCard(card)) {
       this.loseStrike();
     }
+    this.playedCards.push(card);
   }
 
   onDiscardCard(card: ICard): void {
     if (this.cluesRemaining < 8)
       this.cluesRemaining += 1;
+    this.discardedCards.push(card);
   }
 
   hasDiscardedCards(): boolean {
@@ -61,7 +71,7 @@ export class TableComponent implements OnInit {
     this.strikesRemaining -= 1;
     if (this.strikesRemaining === 0) {
       alert("You've lost! New game!")
-      this.ngOnInit();
+      this.reset();
     }
   }
 
