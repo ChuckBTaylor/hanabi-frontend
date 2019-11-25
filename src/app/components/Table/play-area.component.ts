@@ -1,6 +1,6 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { IPlayArea } from 'src/app/models/Table/play-area.model';
-import { ICard, CardColor } from 'src/app/models/Card/card.model';
+import { ICard, CardColor, CardNumber } from 'src/app/models/Card/card.model';
 import { IcuPlaceholder } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Component({
@@ -9,16 +9,22 @@ import { IcuPlaceholder } from '@angular/compiler/src/i18n/i18n_ast';
 })
 export class PlayAreaComponent implements IPlayArea {
 
-    redStack: ICard[];
-    whiteStack: ICard[];
-    yellowStack: ICard[];
-    blueStack: ICard[];
-    greenStack: ICard[];
-    rainbowStack: ICard[];
+    redStack: ICard[] = [{
+        cardNumber: CardNumber.ONE,
+        cardColor: CardColor.RED
+    }];
+    whiteStack: ICard[] = [];
+    yellowStack: ICard[] = [];
+    blueStack: ICard[] = [];
+    greenStack: ICard[] = [];
+    rainbowStack: ICard[] = [];
+    @Input() showRainbowStack: boolean;
 
     playCard(card: ICard): boolean {
         let stack: ICard[] = this.getProperStack(card.cardColor);
-        //TODO left off here!
+        if(card.cardNumber !== stack.length + 1)
+            return false;
+        stack.push(card);
         return true;
     }
 

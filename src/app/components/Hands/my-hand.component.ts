@@ -1,23 +1,40 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, Output, EventEmitter } from '@angular/core';
 import { MyCardComponent } from '../Cards/my-card.component';
-import { CardNumber, CardColor } from 'src/app/models/Card/card.model';
+import { CardNumber, CardColor, ICard } from 'src/app/models/Card/card.model';
 import { CardOrientation, IMyCard } from 'src/app/models/Card/my-card.model';
 
 @Component({
     selector: 'my-hand',
     templateUrl: './my-hand.component.html'
 })
-export class MyHandComponent implements OnInit {
+export class MyHandComponent implements OnInit, OnChanges {
     myName: string = "player name";
     showHand: boolean = true;
     @Input() myCards: IMyCard[] = [];
+    myTurn: boolean = true;
+    @Output() playCard: EventEmitter<ICard> = new EventEmitter<ICard>();
+    @Output() discardCard: EventEmitter<ICard> = new EventEmitter<ICard>();
 
     ngOnInit(): void {
-        this.myCards.map(card => card.cardOrientation = CardOrientation.UP);
-    }
+        this.turnAllCardsUp();
+        console.log(this.myCards);
+    };
+
+    ngOnChanges(): void {
+        this.turnAllCardsUp();
+        console.log(this.myCards);
+    };
 
     toggleHand(): void {
         this.showHand = !this.showHand;
+    };
+
+    playCardClick(card: ICard): void {
+        this.playCard.emit(card);
+    };
+
+    discardCardClick(card: ICard) {
+        this.discardCard.emit(card);
     };
 
     rotateCard(i: number): void {
@@ -51,6 +68,10 @@ export class MyHandComponent implements OnInit {
 
         newPositionNumber -= 1;
         this.myCards.splice(newPositionNumber, 0, this.myCards.splice(i, 1)[0]);
+    };
+
+    turnAllCardsUp(): void {
+        this.myCards.map(card => card.cardOrientation = CardOrientation.UP);
     }
 
 }

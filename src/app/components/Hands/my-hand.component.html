@@ -1,35 +1,58 @@
-<div class='my-hand'> 
-    <div class='my-hand-header'>
-        {{myName}}'s Hand
-    </div>
-    <div class='my-hand-body'>
-    <button (click)='toggleHand()'>{{showHand ? "Hide My Hand" : "Show My Hand"}}</button>
-       <table class='my-hand-table' *ngIf='showHand && myCards && myCards.length'>
-           <thead>
-               <tr>
-                   <th *ngFor="let card of myCards; let i = index" [attr.data-index]="i">{{'Card ' + (1 + i)}}</th>
-               </tr>
-           </thead>
-           <tbody>
-                <tr>
-                    <td *ngFor="let card of myCards">
-                        <my-card [cardOrientation]='card.cardOrientation' [cardColor]='card.cardColor' [cardNumber]='card.cardNumber'></my-card>
-                    </td>
-                </tr>
-           </tbody>
-           <tfoot>
-               <tr>
-                   <td *ngFor="let card of myCards; let i = index" [attr.data-index]="i">
-                       <button (click)='rotateCard(i)'>
-                           Rotate card
-                       </button>
-                       <br/>
-                       <button (click)='moveCard(i)'>
-                           Move Card
-                       </button>
-                   </td>
-               </tr>
-           </tfoot>
-       </table>
-    </div>
+<div class="my-hand">
+  <div class="my-hand-header">{{ myName }}'s Hand</div>
+  <div class="my-hand-body">
+    <button (click)="toggleHand()">
+      {{ showHand ? "Hide My Hand" : "Show My Hand" }}
+    </button>
+    <table class="my-hand-table" *ngIf="showHand && myCards && myCards.length">
+      <thead>
+        <tr>
+          <th *ngFor="let card of myCards; let i = index" [attr.data-index]="i">
+            {{ "Card " + (1 + i) }}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td *ngFor="let card of myCards">
+            <my-card
+              [cardOrientation]="card.cardOrientation"
+              [cardColor]="card.cardColor"
+              [cardNumber]="card.cardNumber"
+            ></my-card>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td *ngFor="let card of myCards; let i = index" [attr.data-index]="i">
+            <button (click)="rotateCard(i)">
+              Rotate card
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td *ngFor="let card of myCards; let i = index" [attr.data-index]="i">
+            <button (click)="moveCard(i)">
+              Move Card
+            </button>
+          </td>
+        </tr>
+        <tr *ngIf="myTurn">
+          <td *ngFor="let card of myCards; let i = index" [attr.data-index]="i">
+            <button (click)="playCardClick(card)">
+              Play Card
+            </button>
+          </td>
+        </tr>
+        <tr *ngIf="myTurn">
+          <td *ngFor="let card of myCards; let i = index" [attr.data-index]="i">
+            <button (click)="discardCardClick(card)">
+              Discard Card
+            </button>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
 </div>

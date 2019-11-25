@@ -1,0 +1,35 @@
+<div class="play-area">
+  Cards Played
+  <table class="play-area-table">
+    <thead>
+      <th>Red Stack</th>
+      <th>Yellow Stack</th>
+      <th>Blue Stack</th>
+      <th>White Stack</th>
+      <th>Green Stack</th>
+      <th *ngIf="showRainbowStack">Rainbow Stack</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td [style.color]="red" [title]='"red " + redStack.length'>
+          {{ redStack.length }}
+        </td>
+        <td [style.color]="Yellow" [title]='"yellow " + yellowStack.length'>
+          {{ yellowStack.length }}
+        </td>
+        <td [style.color]="blue" [title]='"blue " + blueStack.length'>
+          {{ blueStack.length }}
+        </td>
+        <td [style.color]="black" [title]='"white " + whiteStack.length'>
+          {{ whiteStack.length }}
+        </td>
+        <td [style.color]="green" [title]='"green " + greenStack.length'>
+          {{ greenStack.length }}
+        </td>
+        <td *ngIf='showRainbowStack' [style.color]="green" [title]='"rainbow " + rainbowStack.length'>
+          {{ greenStack.length }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
